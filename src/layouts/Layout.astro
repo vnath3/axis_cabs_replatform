@@ -1,0 +1,106 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Axis Cabs — Ground Travel Across India, Done Right',
+  description = 'Fixed-fare outstation cabs, airport transfers, multi-stop itineraries, and corporate employee transport across Maharashtra. Fare on WhatsApp in under 2 minutes.',
+} = Astro.props;
+
+const waNumber = import.meta.env.PUBLIC_WA_NUMBER || '919922333305';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+</head>
+<body data-wa-number={waNumber}>
+  <slot />
+
+  <script>
+    import { track } from '../lib/tracker';
+
+    // wa() is used by onclick handlers across many static components
+    // (nav, footer, CTA band, package cards, etc.) so it lives globally
+    // on window rather than scoped per-component.
+    declare global {
+      interface Window {
+        wa: (msgCtx?: string, trackCtx?: string) => void;
+      }
+    }
+
+    // msgCtx shapes the prefilled WhatsApp message text; trackCtx is the
+    // analytics label (e.g. 'nav', 'corporate', 'package:Goa') and defaults
+    // to msgCtx when the two coincide (corporate, package buttons).
+    window.wa = function (msgCtx?: string, trackCtx?: string) {
+      const number = document.body.dataset.waNumber || '919922333305';
+      const message =
+        msgCtx === 'corporate'
+          ? 'Hi Axis Cabs, I need a corporate transport quote.'
+          : msgCtx
+          ? 'Hi Axis Cabs, interested in ' + msgCtx + ' package.'
+          : 'Hi Axis Cabs, I need a cab quote.';
+      track('whatsapp_clicked', trackCtx || msgCtx || 'general');
+      window.open('https://wa.me/' + number + '?text=' + encodeURIComponent(message));
+    };
+
+    track('page_view');
+
+    // scroll reveal + trust bar counters run on every page load
+    const revealEls = document.querySelectorAll(
+      '.how-card,.seg,.pkg,.rev,.route,.cf,.titem'
+    );
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).style.opacity = '1';
+            (e.target as HTMLElement).style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach((el, i) => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.style.opacity = '0';
+      htmlEl.style.transform = 'translateY(22px)';
+      htmlEl.style.transition = `opacity .45s cubic-bezier(.16,1,.3,1) ${(i % 4) * 0.07}s, transform .45s cubic-bezier(.16,1,.3,1) ${(i % 4) * 0.07}s`;
+      io.observe(el);
+    });
+
+    function animateCount(el: Element | null, target: number, suffix: string) {
+      if (!el) return;
+      let current = 0;
+      const step = Math.ceil(target / 40);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current.toLocaleString('en-IN') + suffix;
+        if (current >= target) clearInterval(timer);
+      }, 35);
+    }
+    const trustObs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          animateCount(document.querySelector('.titem:nth-child(1) .tval'), 5000, '+');
+          animateCount(document.querySelector('.titem:nth-child(2) .tval'), 500, '+');
+          trustObs.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    const trustEl = document.querySelector('.trust');
+    if (trustEl) trustObs.observe(trustEl);
+  </script>
+</body>
+</html>

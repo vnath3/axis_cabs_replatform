@@ -1,0 +1,139 @@
+---
+---
+<div class="gate-bg" id="gate">
+  <div class="gate-modal">
+    <div class="gate-head">
+      <button class="gate-x" onclick="closeGate()">✕</button>
+      <div class="gate-h" id="gh">Your fare estimate is ready</div>
+      <div class="gate-sub" id="gs">Enter your WhatsApp — full breakdown sent in under 2 minutes.</div>
+    </div>
+    <div id="gprev" class="gate-preview">
+      <div class="gate-preview-label">Itinerary preview</div>
+      <div class="gate-itinerary">Aurangabad → Ajanta Caves → Ellora Caves → Daulatabad Fort<br>Distance: 180 km · Sedan · Est. fare: ₹3,200 – ₹3,800<br>Suggested start: 7:00 AM · Return by: 6:30 PM<br>Driver calls 30 min before · Toll charges included</div>
+      <div class="gate-unlock">🔒 Enter WhatsApp to unlock your full plan</div>
+    </div>
+    <div class="gate-form" id="gform">
+      <div class="gate-row2">
+        <div class="gfield"><label>Your name</label><input class="ginput" id="gn" placeholder="Full name"/></div>
+        <div class="gfield"><label>WhatsApp number</label><input class="ginput" id="gw" type="tel" placeholder="+91 98765…"/></div>
+      </div>
+      <div class="gfield" style="margin-bottom:0"><label>Email (optional — for itinerary PDF)</label><input class="ginput" id="ge" type="email" placeholder="you@email.com"/></div>
+      <button class="btn-gate" onclick="submitGate()">Send me the details on WhatsApp</button>
+      <div class="gate-legal">Straight to WhatsApp in 2 minutes. No spam. Unsubscribe anytime.</div>
+    </div>
+    <div class="gate-success" id="gsuccess">
+      <div class="gate-success-icon">✓</div>
+      <div class="gate-success-text" id="gsuccess-text">Done! Check WhatsApp in 2 minutes.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { track } from '../lib/tracker';
+
+  declare global {
+    interface Window {
+      gate: (id: string) => void;
+      closeGate: () => void;
+      submitGate: () => void;
+    }
+  }
+
+  const GC: Record<string, { h: string; s: string; prev: boolean }> = {
+    out: { h: 'Your fare estimate is ready', s: 'Enter WhatsApp — full breakdown sent in 2 minutes.', prev: true },
+    air: { h: 'Checking availability for your flight', s: "Share WhatsApp — we'll confirm driver and slot within minutes.", prev: false },
+    itin: { h: 'Your itinerary is built', s: 'Enter WhatsApp to receive route, timings, and fare breakdown.', prev: true },
+    corp: { h: 'Corporate quote request', s: 'Share WhatsApp — our team calls within 2 working hours.', prev: false },
+  };
+
+  let submitted = false;
+  let gateOpen = false;
+
+  function isValidIndianPhone(raw: string): boolean {
+    const digitsOnly = raw.replace(/\D/g, '');
+    if (digitsOnly.length < 10) return false;
+    let core = digitsOnly;
+    if (core.startsWith('91') && core.length > 10) core = core.slice(2);
+    else if (core.startsWith('0') && core.length > 10) core = core.slice(1);
+    return /^[6-9]\d{9}$/.test(core);
+  }
+
+  function resetForm() {
+    const gform = document.getElementById('gform');
+    const gsuccess = document.getElementById('gsuccess');
+    gform?.classList.remove('hidden');
+    gsuccess?.classList.remove('on');
+    ['gn', 'gw', 'ge'].forEach((id) => {
+      const el = document.getElementById(id) as HTMLInputElement | null;
+      if (el) {
+        el.value = '';
+        el.style.borderColor = '';
+      }
+    });
+  }
+
+  window.gate = function (t: string) {
+    const c = GC[t] || GC.out;
+    const ghEl = document.getElementById('gh');
+    const gsEl = document.getElementById('gs');
+    const gprevEl = document.getElementById('gprev');
+    if (ghEl) ghEl.textContent = c.h;
+    if (gsEl) gsEl.textContent = c.s;
+    if (gprevEl) (gprevEl as HTMLElement).style.display = c.prev ? 'block' : 'none';
+    resetForm();
+    submitted = false;
+    gateOpen = true;
+    document.getElementById('gate')?.classList.add('open');
+    setTimeout(() => document.getElementById('gn')?.focus(), 120);
+  };
+
+  window.closeGate = function () {
+    if (gateOpen && !submitted) {
+      track('gate_abandoned', window.activeTab);
+    }
+    gateOpen = false;
+    document.getElementById('gate')?.classList.remove('open');
+  };
+
+  window.submitGate = function () {
+    const nEl = document.getElementById('gn') as HTMLInputElement;
+    const wEl = document.getElementById('gw') as HTMLInputElement;
+    const eEl = document.getElementById('ge') as HTMLInputElement;
+    const name = nEl.value.trim();
+    const wa = wEl.value.trim();
+    const email = eEl.value.trim();
+
+    if (!name) {
+      nEl.style.borderColor = '#EF4444';
+      nEl.focus();
+      return;
+    }
+    nEl.style.borderColor = '';
+
+    if (!wa || !isValidIndianPhone(wa)) {
+      wEl.style.borderColor = '#EF4444';
+      wEl.focus();
+      return;
+    }
+    wEl.style.borderColor = '';
+
+    track('lead_captured', window.activeTab, { name, wa, email });
+
+    submitted = true;
+    const gform = document.getElementById('gform');
+    const gsuccess = document.getElementById('gsuccess');
+    const gsuccessText = document.getElementById('gsuccess-text');
+    const firstName = name.split(' ')[0];
+    if (gsuccessText) gsuccessText.textContent = `Done, ${firstName}. Check WhatsApp in 2 minutes.`;
+    gform?.classList.add('hidden');
+    gsuccess?.classList.add('on');
+
+    setTimeout(() => {
+      window.closeGate();
+    }, 3000);
+  };
+
+  document.getElementById('gate')?.addEventListener('click', (e) => {
+    if (e.target === document.getElementById('gate')) window.closeGate();
+  });
+</script>

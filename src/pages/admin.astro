@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pw = Astro.url.searchParams.get('pw');
+const adminPassword = import.meta.env.ADMIN_PASSWORD;
+const authorized = Boolean(adminPassword) && pw === adminPassword;
+
+// The Google Sheet itself is the dashboard — this page is just a gated
+// pointer to it, not a UI. Set a sheet URL via env if you want the link
+// to go straight there instead of asking the admin to paste it in.
+const sheetUrl = import.meta.env.ADMIN_SHEET_URL || '';
+---
+<Layout title="Admin — Axis Cabs">
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--off);padding:24px">
+    {authorized ? (
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:36px;max-width:420px;width:100%;text-align:center">
+        <div style="font-size:19px;font-weight:800;color:var(--t1);margin-bottom:8px">Axis Cabs — Admin</div>
+        <p style="font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:20px">Access granted. The Google Sheet is the live dashboard for all tracked events and captured leads.</p>
+        {sheetUrl ? (
+          <a href={sheetUrl} target="_blank" rel="noopener" style="display:inline-block;background:var(--blue);color:#fff;padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px">Open Google Sheet →</a>
+        ) : (
+          <p style="font-size:13px;color:var(--t3)">Set <code>ADMIN_SHEET_URL</code> in your environment to link directly to the sheet.</p>
+        )}
+      </div>
+    ) : (
+      <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:36px;max-width:360px;width:100%;text-align:center">
+        <div style="font-size:19px;font-weight:800;color:var(--t1);margin-bottom:8px">Access denied</div>
+        <p style="font-size:14px;color:var(--t2);line-height:1.7">Append <code>?pw=&lt;password&gt;</code> to this URL with a valid admin password.</p>
+      </div>
+    )}
+  </div>
+</Layout>

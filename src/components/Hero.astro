@@ -1,0 +1,41 @@
+---
+import BookingWidget from './BookingWidget.astro';
+---
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+  <div class="hero-road"></div>
+
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="live-badge">
+        <div class="live-ring"><div class="dot"></div><div class="ring"></div></div>
+        <span class="live-badge-text">Drivers online · instant quotes available now</span>
+      </div>
+
+      <h1 class="hero-h1">
+        Tell us where.<br>
+        <span class="ghost">We handle</span><br>
+        the rest.
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-body">Route, driver, fare — sent to your WhatsApp in under 2 minutes. <strong>Fixed price before you commit.</strong> Driver calls you first. <strong>No hidden charges</strong> — ever.</p>
+
+      <div class="proof-row">
+        <div class="proof-faces">
+          <div class="face f1">SR</div>
+          <div class="face f2">PM</div>
+          <div class="face f3">AK</div>
+          <div class="face f4">RV</div>
+        </div>
+        <div>
+          <div class="proof-stars">★★★★★</div>
+          <div class="proof-label"><strong>5,000+ trips</strong> · Rated 4.8 across Maharashtra</div>
+        </div>
+      </div>
+    </div>
+
+    <BookingWidget />
+  </div>
+</section>

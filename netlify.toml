@@ -1,0 +1,14 @@
+[build]
+  command = "astro build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Environment variables required in the Netlify dashboard
+# (Site settings -> Environment variables) before deploying:
+#   PUBLIC_TRACKER_URL   - deployed Google Apps Script web app URL
+#   PUBLIC_WA_NUMBER     - WhatsApp number in international format, no "+" (e.g. 919922333305)
+#   ADMIN_PASSWORD       - password gating /admin
+# Optional:
+#   ADMIN_SHEET_URL      - direct link to the Google Sheet shown on /admin
