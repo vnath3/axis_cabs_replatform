@@ -10,8 +10,9 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/netlify": "^6.1.0",
     "astro": "^5.1.1",
-    "@astrojs/netlify": "^6.1.0"
+    "lucide-static": "^1.46.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

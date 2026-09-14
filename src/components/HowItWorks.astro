@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 ---
 <section class="sec how-sec">
   <div class="sec-wrap">
@@ -12,21 +13,21 @@
     <div class="how-cards">
       <div class="how-card">
         <div class="how-step">STEP 01</div>
-        <div class="how-icon hw1">📱</div>
+        <div class="how-icon hw1" style="color:var(--blue)"><Icon name="search" size={26} /></div>
         <div class="how-title">Tell us your trip</div>
         <div class="how-body">Use the booking widget or just chat with our AI — describe the trip in plain language. Origin, destination, date, passengers. That's all.</div>
         <div class="how-detail">No account needed. No app to download. No back-and-forth calls. One message and we have everything we need.</div>
       </div>
       <div class="how-card">
         <div class="how-step">STEP 02</div>
-        <div class="how-icon hw2">💬</div>
+        <div class="how-icon hw2" style="color:var(--green)"><Icon name="message-circle" size={26} /></div>
         <div class="how-title">Full fare on WhatsApp — in 2 minutes</div>
         <div class="how-body">We send a complete breakdown to your WhatsApp: base fare, driver allowance, tolls, parking, hill charges if any. The number you see is the number you pay.</div>
         <div class="how-detail">Most cab services show you a fare and add charges at the end. We tell you everything upfront because we'd rather earn your trust once than surprise you and lose it forever.</div>
       </div>
       <div class="how-card">
         <div class="how-step">STEP 03</div>
-        <div class="how-icon hw3">📞</div>
+        <div class="how-icon hw3" style="color:var(--gold2)"><Icon name="car" size={26} /></div>
         <div class="how-title">Driver calls first. You travel.</div>
         <div class="how-body">Your driver calls you 30 minutes before pickup — every trip, no exceptions. If your flight lands early, they adjust. If it's delayed, they wait.</div>
         <div class="how-detail">In 5,000+ trips, the ones that go wrong always share one thing: no one called first. So we made it mandatory.</div>

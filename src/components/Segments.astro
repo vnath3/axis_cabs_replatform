@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+import WaIcon from './WaIcon.astro';
 ---
 <section class="sec seg-sec">
   <div class="sec-wrap">
@@ -10,7 +12,7 @@
     <div class="seg-grid">
       <!-- outstation tall -->
       <div class="seg seg-out" onclick="tab('out',null);scrollW()">
-        <span class="seg-icon">🛣️</span>
+        <span class="seg-icon"><Icon name="route" size={40} /></span>
         <div class="seg-h">Outstation</div>
         <div class="seg-p">City-to-city travel with a fixed fare locked before you commit. One way or round trip, any vehicle class. No surge pricing — ever. We cover 500+ routes across Maharashtra, Goa, and central India.</div>
         <span class="seg-pill">Most popular · 70% of our trips</span>
@@ -18,7 +20,7 @@
       </div>
       <!-- airport -->
       <div class="seg seg-air" onclick="tab('air',null);scrollW()">
-        <span class="seg-icon">✈️</span>
+        <span class="seg-icon"><Icon name="plane" size={26} /></span>
         <div class="seg-h">Airport transfers</div>
         <div class="seg-p">Flight-aware pickups. Driver tracks your flight live — if it's early, they're early. If it's delayed, they wait. Covers IXU, PNQ, BOM, NAG, HYD.</div>
         <span class="seg-pill">On-time guarantee</span>
@@ -26,7 +28,7 @@
       </div>
       <!-- itinerary -->
       <div class="seg seg-itin" onclick="tab('itin',null);scrollW()">
-        <span class="seg-icon">🗺️</span>
+        <span class="seg-icon"><Icon name="map" size={26} /></span>
         <div class="seg-h">Multi-stop itinerary</div>
         <div class="seg-p">Tell us the places. We plan the route, timing, and logistics. AI-built itinerary sent to your WhatsApp with fare included.</div>
         <span class="seg-pill">AI-planned, human-delivered</span>
@@ -36,14 +38,14 @@
       <div class="seg seg-corp" onclick="tab('corp',null);scrollW()">
         <div class="seg-corp-inner">
           <div>
-            <span class="seg-icon">🏢</span>
+            <span class="seg-icon" style="color:#fff"><Icon name="building-2" size={30} /></span>
             <div class="seg-h">Corporate contracts</div>
             <div class="seg-p">Monthly employee transport for offices and factories near Pune, Aurangabad, and the AURIC industrial belt. Fixed billing, GPS-tracked fleet, GST invoicing. Scales from 10 to 500+ employees.</div>
             <span class="seg-pill">Highest LTV · Fixed monthly contracts</span>
             <span class="seg-arrow">Get quote →</span>
           </div>
           <div class="seg-corp-cta">
-            <button class="btn-corp-s" onclick="event.stopPropagation();window.wa('corporate')">💬 WhatsApp</button>
+            <button class="btn-corp-s" onclick="event.stopPropagation();window.wa('corporate')"><WaIcon size={16} /> WhatsApp</button>
             <button class="btn-corp-p" onclick="event.stopPropagation();gate('corp')">Get quote →</button>
           </div>
         </div>

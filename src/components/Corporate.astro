@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+import WaIcon from './WaIcon.astro';
 ---
 <section class="corp-sec" id="corporate">
   <div class="corp-wrap">
@@ -7,14 +9,14 @@
       <div class="corp-h2">Employee transport<br>that doesn't break<br>at 3:30am.</div>
       <p class="corp-sub">Offices, factories, and hospitals near Pune, Aurangabad, and the AURIC industrial belt. We've done night shifts. We know what "reliable" actually means when a production line depends on your cabs showing up.</p>
       <div class="corp-feats">
-        <div class="cf"><div class="cf-dot">💰</div><div><div class="cf-title">Fixed monthly billing</div><div class="cf-body">One clean invoice at month end. Finance teams approve us in a day.</div></div></div>
-        <div class="cf"><div class="cf-dot">📍</div><div><div class="cf-title">GPS-tracked fleet — always</div><div class="cf-body">Live visibility for your ops team. Panic button on every vehicle.</div></div></div>
-        <div class="cf"><div class="cf-dot">🛡️</div><div><div class="cf-title">Night shift &amp; female safety protocol</div><div class="cf-body">Verified female co-ordinators, safety escort, pickup confirmation calls.</div></div></div>
-        <div class="cf"><div class="cf-dot">🧾</div><div><div class="cf-title">GST invoicing + account manager</div><div class="cf-body">Scales from 10 to 500+ employees. We handle routing, allocation, reporting.</div></div></div>
+        <div class="cf"><div class="cf-dot" style="color:#93C5FD"><Icon name="clipboard-list" size={18} /></div><div><div class="cf-title">Fixed monthly billing</div><div class="cf-body">One clean invoice at month end. Finance teams approve us in a day.</div></div></div>
+        <div class="cf"><div class="cf-dot" style="color:#93C5FD"><Icon name="map-pin" size={18} /></div><div><div class="cf-title">GPS-tracked fleet — always</div><div class="cf-body">Live visibility for your ops team. Panic button on every vehicle.</div></div></div>
+        <div class="cf"><div class="cf-dot" style="color:#93C5FD"><Icon name="moon" size={18} /></div><div><div class="cf-title">Night shift &amp; female safety protocol</div><div class="cf-body">Verified female co-ordinators, safety escort, pickup confirmation calls.</div></div></div>
+        <div class="cf"><div class="cf-dot" style="color:#93C5FD"><Icon name="receipt" size={18} /></div><div><div class="cf-title">GST invoicing + account manager</div><div class="cf-body">Scales from 10 to 500+ employees. We handle routing, allocation, reporting.</div></div></div>
       </div>
       <div class="corp-btns">
         <button class="btn-cp" onclick="gate('corp')">Get a contract quote</button>
-        <button class="btn-cw" onclick="window.wa('corporate')">💬 WhatsApp our team</button>
+        <button class="btn-cw" onclick="window.wa('corporate')"><WaIcon size={16} /> WhatsApp our team</button>
       </div>
     </div>
     <div class="corp-card">

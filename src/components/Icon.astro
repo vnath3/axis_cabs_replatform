@@ -1,0 +1,33 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Props {
+  name: string;
+  size?: number;
+  strokeWidth?: number;
+  class?: string;
+  style?: string;
+}
+
+const { name, size = 20, strokeWidth, class: className, style } = Astro.props;
+
+const svgPath = path.join(process.cwd(), 'node_modules/lucide-static/icons', `${name}.svg`);
+let raw = fs.readFileSync(svgPath, 'utf-8');
+
+// Strip the leading license comment and force a consistent size; lucide's
+// SVGs ship with stroke="currentColor" so tint follows the wrapping
+// element's CSS `color` with no per-icon color handling needed here.
+raw = raw.replace(/<!--[\s\S]*?-->/, '').trim();
+raw = raw.replace(/\swidth="[^"]*"/, ` width="${size}"`).replace(/\sheight="[^"]*"/, ` height="${size}"`);
+if (strokeWidth) {
+  raw = raw.replace(/\sstroke-width="[^"]*"/, ` stroke-width="${strokeWidth}"`);
+}
+if (className) {
+  raw = raw.replace('<svg', `<svg class="${className}"`);
+}
+if (style) {
+  raw = raw.replace('<svg', `<svg style="${style}"`);
+}
+---
+<Fragment set:html={raw} />

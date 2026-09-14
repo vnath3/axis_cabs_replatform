@@ -1,12 +1,14 @@
 ---
+import Icon from './Icon.astro';
+import WaIcon from './WaIcon.astro';
 ---
 <div class="widget">
   <div class="wtabs">
-    <button class="wtab on" onclick="tab('out',this)"><span class="wtab-icon">🛣️</span>Outstation</button>
-    <button class="wtab" onclick="tab('air',this)"><span class="wtab-icon">✈️</span>Airport</button>
-    <button class="wtab" onclick="tab('itin',this)"><span class="wtab-icon">🗺️</span>Itinerary</button>
-    <button class="wtab" onclick="tab('corp',this)"><span class="wtab-icon">🏢</span>Corporate</button>
-    <button class="wtab" onclick="tab('ai',this)"><span class="wtab-icon">💬</span>Ask AI</button>
+    <button class="wtab on" onclick="tab('out',this)"><span class="wtab-icon"><Icon name="route" size={20} /></span>Outstation</button>
+    <button class="wtab" onclick="tab('air',this)"><span class="wtab-icon"><Icon name="plane" size={20} /></span>Airport</button>
+    <button class="wtab" onclick="tab('itin',this)"><span class="wtab-icon"><Icon name="map" size={20} /></span>Itinerary</button>
+    <button class="wtab" onclick="tab('corp',this)"><span class="wtab-icon"><Icon name="building-2" size={20} /></span>Corporate</button>
+    <button class="wtab" onclick="tab('ai',this)"><span class="wtab-icon"><Icon name="message-circle" size={20} /></span>Ask AI</button>
   </div>
   <div class="wbody">
 
@@ -28,7 +30,7 @@
       </div>
       <div class="act-row">
         <button class="btn-go" onclick="ctaGate('out')">Get fare estimate</button>
-        <button class="btn-wa-s" onclick="window.wa(undefined,'widget:outstation')">💬 WhatsApp</button>
+        <button class="btn-wa-s" onclick="window.wa(undefined,'widget:outstation')"><WaIcon size={16} /> WhatsApp</button>
       </div>
     </div>
 
@@ -49,7 +51,7 @@
       </div>
       <div class="act-row">
         <button class="btn-go" onclick="ctaGate('air')">Check availability</button>
-        <button class="btn-wa-s" onclick="window.wa(undefined,'widget:airport')">💬 WhatsApp</button>
+        <button class="btn-wa-s" onclick="window.wa(undefined,'widget:airport')"><WaIcon size={16} /> WhatsApp</button>
       </div>
     </div>
 
@@ -83,7 +85,7 @@
       </div>
       <div class="act-row">
         <button class="btn-go" onclick="ctaGate('corp')">Request contract quote</button>
-        <button class="btn-wa-s" onclick="window.wa('corporate')">💬 WhatsApp</button>
+        <button class="btn-wa-s" onclick="window.wa('corporate')"><WaIcon size={16} /> WhatsApp</button>
       </div>
     </div>
 
