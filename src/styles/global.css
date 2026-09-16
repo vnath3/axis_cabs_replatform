@@ -274,6 +274,7 @@ select.fin{-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Cs
 .pkg{background:var(--white);border-radius:var(--rl);overflow:hidden;border:1.5px solid var(--border);transition:all .22s;cursor:pointer}
 .pkg:hover{box-shadow:0 20px 48px rgba(0,0,0,.1);transform:translateY(-4px);border-color:var(--border2)}
 .pkg-img{height:160px;display:flex;align-items:flex-end;justify-content:flex-start;position:relative;overflow:hidden;padding:14px}
+.pkg-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 
 /* rich illustrated backgrounds */
 .img-heritage{background:linear-gradient(160deg,#1A1C2E 0%,#2D1B54 50%,#0D1B4E 100%);position:relative}
@@ -282,23 +283,23 @@ select.fin{-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Cs
 .img-hills{background:linear-gradient(175deg,#071209 0%,#0D2B10 45%,#1D5224 100%);position:relative}
 
 /* SVG scene overlays - rendered inline via bg */
-.img-heritage::before{content:'';position:absolute;inset:0;background:
+.img-heritage::before{content:'';position:absolute;inset:0;z-index:1;background:
   radial-gradient(ellipse 60% 30% at 50% 85%,rgba(245,158,11,.12),transparent),
   radial-gradient(ellipse 100% 40% at 50% 100%,rgba(0,0,0,.5),transparent);pointer-events:none}
-.img-pilgrim::before{content:'';position:absolute;inset:0;background:
+.img-pilgrim::before{content:'';position:absolute;inset:0;z-index:1;background:
   radial-gradient(ellipse 80% 40% at 50% 100%,rgba(0,0,0,.5),transparent),
   radial-gradient(ellipse 40% 50% at 50% 40%,rgba(251,191,36,.08),transparent);pointer-events:none}
-.img-beach::before{content:'';position:absolute;inset:0;background:
+.img-beach::before{content:'';position:absolute;inset:0;z-index:1;background:
   radial-gradient(ellipse 100% 35% at 50% 100%,rgba(0,0,0,.4),transparent),
   radial-gradient(ellipse 60% 60% at 30% 20%,rgba(255,255,255,.04),transparent);pointer-events:none}
-.img-hills::before{content:'';position:absolute;inset:0;background:
+.img-hills::before{content:'';position:absolute;inset:0;z-index:1;background:
   radial-gradient(ellipse 100% 40% at 50% 100%,rgba(0,0,0,.5),transparent),
   radial-gradient(ellipse 50% 50% at 70% 20%,rgba(255,255,255,.05),transparent);pointer-events:none}
 
 .pkg-emoji{font-size:62px;position:absolute;right:14px;bottom:10px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));line-height:1;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .pkg:hover .pkg-emoji{transform:scale(1.12) rotate(-4deg) translateY(-3px)}
 
-.pkg-cat{background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:4px 11px;border-radius:100px;display:inline-block;letter-spacing:.3px}
+.pkg-cat{position:relative;z-index:2;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:700;padding:4px 11px;border-radius:100px;display:inline-block;letter-spacing:.3px}
 .pkg-body{padding:18px 18px 16px}
 .pkg-name{font-size:15.5px;font-weight:800;color:var(--t1);letter-spacing:-.3px;margin-bottom:3px}
 .pkg-meta{font-size:12.5px;color:var(--t3);margin-bottom:12px}
