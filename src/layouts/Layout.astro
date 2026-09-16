@@ -55,21 +55,24 @@ const canonical = new URL(path, siteUrl).toString();
     // on window rather than scoped per-component.
     declare global {
       interface Window {
-        wa: (msgCtx?: string, trackCtx?: string) => void;
+        wa: (msgCtx?: string, trackCtx?: string, customMessage?: string) => void;
       }
     }
 
     // msgCtx shapes the prefilled WhatsApp message text; trackCtx is the
     // analytics label (e.g. 'nav', 'corporate', 'package:Goa') and defaults
     // to msgCtx when the two coincide (corporate, package buttons).
-    window.wa = function (msgCtx?: string, trackCtx?: string) {
+    // customMessage, when given, is sent verbatim instead — used by route
+    // landing pages where "interested in X package" would read wrong.
+    window.wa = function (msgCtx?: string, trackCtx?: string, customMessage?: string) {
       const number = document.body.dataset.waNumber || '919922333305';
       const message =
-        msgCtx === 'corporate'
+        customMessage ||
+        (msgCtx === 'corporate'
           ? 'Hi Axis Cabs, I need a corporate transport quote.'
           : msgCtx
           ? 'Hi Axis Cabs, interested in ' + msgCtx + ' package.'
-          : 'Hi Axis Cabs, I need a cab quote.';
+          : 'Hi Axis Cabs, I need a cab quote.');
       track('whatsapp_clicked', trackCtx || msgCtx || 'general');
       window.open('https://wa.me/' + number + '?text=' + encodeURIComponent(message));
     };
@@ -78,7 +81,7 @@ const canonical = new URL(path, siteUrl).toString();
 
     // scroll reveal + trust bar counters run on every page load
     const revealEls = document.querySelectorAll(
-      '.how-card,.seg,.pkg,.rev,.route,.cf,.titem'
+      '.how-card,.seg,.pkg,.rev,.route,.cf,.titem,.rfitem,.faq-item'
     );
     const io = new IntersectionObserver(
       (entries) => {

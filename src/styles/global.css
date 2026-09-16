@@ -482,18 +482,40 @@ select.fin{-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Cs
 .gate-form.hidden{display:none}
 
 /* ================================
+   PAGE HERO — shared navy header used by /faq and route landing pages
+================================ */
+.page-hero{background:var(--navy);padding:56px 28px 40px;position:relative;overflow:hidden}
+.page-hero-wrap{max-width:820px;margin:0 auto;position:relative;z-index:1}
+.page-kicker{font-size:11px;font-weight:800;letter-spacing:2px;color:#60A5FA;text-transform:uppercase;margin-bottom:12px}
+.page-h1{font-size:clamp(28px,3.4vw,42px);font-weight:800;letter-spacing:-1.2px;color:#fff;line-height:1.1;margin-bottom:14px}
+.page-sub{color:rgba(255,255,255,.5);font-size:15.5px;line-height:1.75;max-width:560px}
+
+/* ================================
    FAQ PAGE
 ================================ */
-.faq-hero{background:var(--navy);padding:56px 28px 40px;position:relative;overflow:hidden}
-.faq-hero-wrap{max-width:820px;margin:0 auto;position:relative;z-index:1}
-.faq-kicker{font-size:11px;font-weight:800;letter-spacing:2px;color:#60A5FA;text-transform:uppercase;margin-bottom:12px}
-.faq-h1{font-size:clamp(28px,3.4vw,42px);font-weight:800;letter-spacing:-1.2px;color:#fff;line-height:1.1;margin-bottom:14px}
-.faq-sub{color:rgba(255,255,255,.5);font-size:15.5px;line-height:1.75;max-width:560px}
 .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
 .faq-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:24px 26px;transition:border-color .15s}
 .faq-item:hover{border-color:var(--border2)}
 .faq-q{font-size:16px;font-weight:800;color:var(--t1);letter-spacing:-.2px;margin-bottom:8px}
 .faq-a{font-size:14.5px;color:var(--t2);line-height:1.75}
+
+/* ================================
+   ROUTE LANDING PAGES
+================================ */
+.page-hero-cta{margin-top:24px}
+.route-facts{background:var(--navy2);padding:0 28px}
+.route-facts-wrap{max-width:820px;margin:0 auto;display:flex;align-items:stretch;flex-wrap:wrap}
+.rfitem{display:flex;flex-direction:column;justify-content:center;padding:18px 28px;border-right:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.rfitem:last-child{border-right:none}
+.rfval{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.4px;line-height:1.15}
+.rflabel{font-size:11px;color:rgba(255,255,255,.35);font-weight:500;margin-top:2px;white-space:nowrap}
+.route-content{max-width:820px;margin:0 auto}
+.route-note{font-size:12.5px;color:var(--t3);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:10px 14px;margin-top:16px;line-height:1.6}
+.route-highlights{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+.route-highlight{display:flex;gap:12px;align-items:flex-start}
+.route-highlight-dot{width:32px;height:32px;border-radius:9px;background:var(--blue-tint);color:var(--blue);display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+.route-highlight-body{font-size:14.5px;color:var(--t2);line-height:1.7}
+.route-highlight-body strong{color:var(--t1)}
 
 /* ================================
    RESPONSIVE

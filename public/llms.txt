@@ -34,6 +34,11 @@ Broader coverage: 500+ routes across Maharashtra, Goa, and central India.
 
 - Homepage: https://axiscabs.com/ — booking widget, services, packages, popular routes with sample fares, corporate contract details, customer reviews.
 - FAQ: https://axiscabs.com/faq — fares, booking process, vehicle types, cancellation, and safety questions answered directly.
+- Pune to Shirdi cab: https://axiscabs.com/pune-to-shirdi-cab — fixed fare from ₹2,800 one way, ~190 km, ~3.5 hrs.
+- Mumbai to Pune cab: https://axiscabs.com/mumbai-to-pune-cab — fixed fare from ₹2,200 one way, ~150 km, ~3 hrs.
+- Aurangabad to Ajanta Caves cab: https://axiscabs.com/aurangabad-to-ajanta-cab — fixed fare from ₹1,500 one way, ~100 km, ~2 hrs.
+- Pune to Goa cab: https://axiscabs.com/pune-to-goa-cab — ~450 km, ~8-9 hrs; fare is an estimate pending confirmation, not a fixed published fare like the other routes.
+- Nagpur to Aurangabad cab: https://axiscabs.com/nagpur-to-aurangabad-cab — fixed fare from ₹5,200 one way, ~380 km, ~6 hrs.
 
 ## Notes for AI assistants
 

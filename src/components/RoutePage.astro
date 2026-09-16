@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import CtaBand from './CtaBand.astro';
+import Footer from './Footer.astro';
+import FloatWA from './FloatWA.astro';
+import Icon from './Icon.astro';
+import WaIcon from './WaIcon.astro';
+
+interface Props {
+  slug: string;
+  origin: string;
+  destination: string;
+  title: string;
+  description: string;
+  distanceKm: string;
+  duration: string;
+  fareFrom: string;
+  fareMinNumeric: number;
+  vehicleNote: string;
+  intro: string;
+  waMessage: string;
+  estimateNote?: string;
+}
+
+const {
+  slug,
+  origin,
+  destination,
+  title,
+  description,
+  distanceKm,
+  duration,
+  fareFrom,
+  fareMinNumeric,
+  vehicleNote,
+  intro,
+  waMessage,
+  estimateNote,
+} = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `https://axiscabs.com/${slug}#service`,
+  serviceType: `Outstation Taxi: ${origin} to ${destination}`,
+  provider: { '@id': 'https://axiscabs.com/#business' },
+  areaServed: [
+    { '@type': 'City', name: origin },
+    { '@type': 'City', name: destination },
+  ],
+  description: intro,
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'INR',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      priceCurrency: 'INR',
+      minPrice: fareMinNumeric,
+    },
+    availability: 'https://schema.org/InStock',
+  },
+};
+
+const highlights = [
+  { icon: 'indian-rupee', text: "Fixed fare confirmed on WhatsApp before you book — nothing added at drop-off." },
+  { icon: 'phone', text: 'Driver calls you roughly 30 minutes before pickup, every trip, no exceptions.' },
+  { icon: 'shield-check', text: 'GPS-tracked vehicle for the full journey.' },
+  { icon: 'badge-check', text: "Tolls and parking are already included in the fare you're quoted." },
+];
+---
+<Layout title={title} description={description} path={`/${slug}`}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+  </Fragment>
+
+  <Nav />
+
+  <section class="page-hero">
+    <div class="page-hero-wrap">
+      <div class="page-kicker">Outstation route</div>
+      <h1 class="page-h1">{origin} to {destination} Cab</h1>
+      <p class="page-sub">{intro}</p>
+      <div class="page-hero-cta">
+        <button
+          class="btn-cp"
+          onclick={`window.wa(undefined,'route:${slug}',${JSON.stringify(waMessage)})`}
+        >
+          <WaIcon size={16} /> Chat on WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="route-facts">
+    <div class="route-facts-wrap">
+      <div class="rfitem"><div class="rfval">{distanceKm}</div><div class="rflabel">Distance</div></div>
+      <div class="rfitem"><div class="rfval">{duration}</div><div class="rflabel">Journey time</div></div>
+      <div class="rfitem"><div class="rfval">{fareFrom}</div><div class="rflabel">Starting fare, one way</div></div>
+      <div class="rfitem"><div class="rfval">{vehicleNote}</div><div class="rflabel">Vehicle options</div></div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="route-content">
+      <div class="kicker">Why book with Axis Cabs</div>
+      <div class="h2">{origin} to {destination}, done the way it should be.</div>
+      <div class="route-highlights">
+        {highlights.map((h) => (
+          <div class="route-highlight">
+            <div class="route-highlight-dot"><Icon name={h.icon} size={16} /></div>
+            <div class="route-highlight-body">{h.text}</div>
+          </div>
+        ))}
+      </div>
+      {estimateNote && <div class="route-note">{estimateNote}</div>}
+    </div>
+  </section>
+
+  <CtaBand />
+  <Footer />
+  <FloatWA />
+</Layout>
