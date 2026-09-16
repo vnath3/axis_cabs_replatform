@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
@@ -13,8 +15,56 @@ import CtaBand from '../components/CtaBand.astro';
 import Footer from '../components/Footer.astro';
 import FloatWA from '../components/FloatWA.astro';
 import LeadGateModal from '../components/LeadGateModal.astro';
+
+// hasMap and sameAs are omitted (both optional on LocalBusiness) until the
+// real Google Maps Place ID and social profile URLs are available — shipping
+// literal "FILL IN" placeholder text here would fail schema validation.
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'TaxiService'],
+  '@id': 'https://axiscabs.com/#business',
+  name: 'Axis Cabs',
+  image: 'https://axiscabs.com/favicon.svg',
+  url: 'https://axiscabs.com/',
+  telephone: '+91-99223-33305',
+  priceRange: '₹₹',
+  foundingDate: '2018-01-01',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Osmanpura, Jyoti Nagar',
+    addressLocality: 'Chhatrapati Sambhaji Nagar',
+    addressRegion: 'Maharashtra',
+    postalCode: '431005',
+    addressCountry: 'IN',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: '19.864632',
+    longitude: '75.331659',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+    },
+  ],
+  areaServed: [
+    { '@type': 'City', name: 'Chhatrapati Sambhaji Nagar' },
+    { '@type': 'City', name: 'Mumbai' },
+    { '@type': 'City', name: 'Pune' },
+    { '@type': 'City', name: 'Nashik' },
+    { '@type': 'City', name: 'Shirdi' },
+    { '@type': 'State', name: 'Maharashtra' },
+  ],
+};
 ---
 <Layout>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} is:inline />
+  </Fragment>
+
   <Nav />
   <Hero />
   <TrustBar />

@@ -1,0 +1,99 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import FloatWA from '../components/FloatWA.astro';
+import LeadGateModal from '../components/LeadGateModal.astro';
+
+const faqs = [
+  {
+    q: 'How much does an outstation cab cost from Aurangabad?',
+    a: 'Fares are fixed and shown to you in full before you book — for example, Aurangabad–Shirdi starts from ₹1,900 and Aurangabad–Ajanta from ₹1,500 one way, while longer routes like Mumbai–Goa start from ₹7,500. The exact fare for your date, vehicle class, and pickup point is confirmed on WhatsApp before you commit, and it includes tolls and parking — nothing is added afterward.',
+  },
+  {
+    q: 'Are there any hidden charges added after booking?',
+    a: "No. The fare we send on WhatsApp is the fare you pay — it already includes base fare, driver allowance, tolls, parking, and hill charges where applicable. We show the full breakdown upfront specifically so there are no surprises at drop-off.",
+  },
+  {
+    q: 'How do I book a cab with Axis Cabs?',
+    a: 'Message us on WhatsApp or call +91 99223 33305, or use the booking widget on axiscabs.com. Tell us where from, where to, and when — we reply with a fixed fare and driver details, usually within about 2 minutes.',
+  },
+  {
+    q: 'What vehicle types can I choose from?',
+    a: 'Sedan, SUV/Innova, and Luxury, or you can let us pick the best match for your group size and route. Vehicle class is selected when you request your fare, and it affects the quoted price.',
+  },
+  {
+    q: 'Do you track my flight for airport pickups?',
+    a: "Yes. We track your flight status live and adjust the pickup time automatically — if your flight lands early we're early, if it's delayed we wait. We cover Aurangabad (IXU), Pune (PNQ), Mumbai (BOM), Nagpur (NAG), and Hyderabad (HYD) airports for both pickup and drop.",
+  },
+  {
+    q: 'Which cities and routes do you cover?',
+    a: 'We are based in Chhatrapati Sambhaji Nagar (Aurangabad), Maharashtra, and run 500+ routes across Maharashtra, Goa, and central India. Common routes include Aurangabad–Shirdi, Aurangabad–Pune, Pune–Mumbai, Pune–Nashik, Pune–Mahabaleshwar, Aurangabad–Ajanta & Ellora, and Mumbai–Goa.',
+  },
+  {
+    q: 'Can you plan a custom multi-stop trip?',
+    a: "Yes. Use the Itinerary option on the booking widget — describe the places you want to visit in order (for example, Ajanta → Ellora → Daulatabad → Shirdi) and we'll plan the route, timing, and fare, then send the full plan to your WhatsApp.",
+  },
+  {
+    q: 'Do you offer monthly transport contracts for companies?',
+    a: "Yes. We run fixed monthly-billing corporate contracts for offices, factories, and hospitals near Pune, Aurangabad, and the AURIC industrial belt — GPS-tracked fleet, GST-compliant invoicing, and a night-shift female-safety protocol with verified co-ordinators. Contracts scale from 10 to 500+ employees.",
+  },
+  {
+    q: 'How do you ensure the ride is safe?',
+    a: "Every vehicle in our fleet is GPS-tracked, and your driver calls you roughly 30 minutes before pickup on every single trip — no exceptions. Corporate night-shift customers get an additional female-safety protocol with verified co-ordinators and pickup confirmation calls.",
+  },
+  {
+    q: 'How do I cancel or change a booking?',
+    a: "Message us on WhatsApp as soon as you know your plans have changed and we'll adjust the pickup time, vehicle, or route where possible. We don't currently publish a fixed self-service cancellation policy on the site — for anything time-sensitive, calling +91 99223 33305 directly is fastest.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.a,
+    },
+  })),
+};
+---
+<Layout
+  title="FAQs — Fares, Booking & Safety | Axis Cabs Aurangabad"
+  description="Answers to real questions about Axis Cabs fares, booking process, vehicle types, airport pickups, corporate contracts, and safety — Aurangabad, Pune, Mumbai, Shirdi routes."
+  path="/faq"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
+  </Fragment>
+
+  <Nav />
+
+  <section class="faq-hero">
+    <div class="faq-hero-wrap">
+      <div class="faq-kicker">Help center</div>
+      <h1 class="faq-h1">Questions people actually ask before booking.</h1>
+      <p class="faq-sub">Fares, booking, vehicles, and safety — straight answers, no sales pitch. Still stuck? <a href="https://wa.me/919922333305" style="color:#60A5FA;font-weight:700">Message us on WhatsApp</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:48px">
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <div class="faq-item">
+          <div class="faq-q">{f.q}</div>
+          <div class="faq-a">{f.a}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Footer />
+  <FloatWA />
+  <LeadGateModal />
+</Layout>

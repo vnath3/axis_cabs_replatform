@@ -10,7 +10,7 @@ const authorized = Boolean(adminPassword) && pw === adminPassword;
 // to go straight there instead of asking the admin to paste it in.
 const sheetUrl = import.meta.env.ADMIN_SHEET_URL || '';
 ---
-<Layout title="Admin — Axis Cabs">
+<Layout title="Admin — Axis Cabs" path="/admin" noindex={true}>
   <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--off);padding:24px">
     {authorized ? (
       <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:36px;max-width:420px;width:100%;text-align:center">

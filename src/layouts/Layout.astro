@@ -4,14 +4,20 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  path?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Axis Cabs — Ground Travel Across India, Done Right',
-  description = 'Fixed-fare outstation cabs, airport transfers, multi-stop itineraries, and corporate employee transport across Maharashtra. Fare on WhatsApp in under 2 minutes.',
+  title = 'Axis Cabs — Fixed-Fare Outstation & Airport Cabs in Aurangabad',
+  description = 'Fixed-fare outstation cabs, airport transfers, and corporate employee transport from Chhatrapati Sambhaji Nagar (Aurangabad) to Pune, Mumbai, Nashik & Shirdi. Fare confirmed on WhatsApp before you book.',
+  path = '/',
+  noindex = false,
 } = Astro.props;
 
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER || '919922333305';
+const siteUrl = 'https://axiscabs.com';
+const canonical = new URL(path, siteUrl).toString();
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +26,23 @@ const waNumber = import.meta.env.PUBLIC_WA_NUMBER || '919922333305';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <meta name="robots" content={noindex ? 'noindex,nofollow' : 'index,follow'}>
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Axis Cabs">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+  <slot name="head" />
 </head>
 <body data-wa-number={waNumber}>
   <slot />

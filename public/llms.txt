@@ -1,0 +1,41 @@
+# Axis Cabs
+
+> Axis Cabs is a taxi and outstation cab service based in Chhatrapati Sambhaji Nagar (Aurangabad), Maharashtra, India. It provides fixed-fare airport transfers, city-to-city (outstation) travel, multi-stop itinerary planning, and monthly corporate employee transport contracts across Maharashtra, with primary routes connecting Aurangabad, Pune, Mumbai, Nashik, and Shirdi. Booking happens over WhatsApp or phone call; a fixed fare is quoted before the customer commits, with no hidden charges added afterward.
+
+## Services
+
+- Outstation cabs: one-way and round-trip city-to-city travel with a fixed fare locked before booking. Vehicle classes: Sedan, SUV/Innova, Luxury. Covers 500+ routes across Maharashtra, Goa, and central India.
+- Airport transfers: flight-tracked pickup and drop at Aurangabad (IXU), Pune (PNQ), Mumbai (BOM), Nagpur (NAG), and Hyderabad (HYD) airports. Driver adjusts pickup time automatically to actual flight arrival.
+- Multi-stop itinerary planning: customer describes a multi-destination trip (e.g. Ajanta → Ellora → Daulatabad → Shirdi) and receives a planned route, timing, and fare.
+- Corporate employee transport: fixed monthly-billing contracts for offices, factories, and hospitals near Pune, Aurangabad, and the AURIC industrial belt. GPS-tracked fleet, GST-compliant invoicing, night-shift and female-safety protocols. Scales from 10 to 500+ employees.
+- Curated travel packages: multi-day packages bundling cab, hotel, and entry tickets for Ajanta & Ellora Caves, Shirdi Darshan, Goa Coastal, and Mahabaleshwar.
+
+## Coverage area
+
+Primary base: Chhatrapati Sambhaji Nagar (Aurangabad), Maharashtra, India.
+Primary routes: Aurangabad ↔ Pune, Aurangabad ↔ Mumbai (via Pune), Aurangabad ↔ Shirdi, Aurangabad ↔ Ajanta & Ellora Caves, Aurangabad ↔ Nashik, Pune ↔ Shirdi, Pune ↔ Mumbai, Pune ↔ Nashik, Pune ↔ Mahabaleshwar, Pune ↔ Kolhapur, Mumbai ↔ Goa, Nagpur ↔ Aurangabad.
+Broader coverage: 500+ routes across Maharashtra, Goa, and central India.
+
+## Booking
+
+- WhatsApp: https://wa.me/919922333305 (primary booking channel; fare and driver details sent within roughly 2 minutes of a request)
+- Phone: +91 99223 33305
+- Website booking widget: https://axiscabs.com/ (outstation, airport, itinerary, and corporate quote forms; also has an AI chat assistant for trip requests in plain language)
+- Process: customer sends trip details → Axis Cabs replies on WhatsApp with a full fare breakdown (base fare, driver allowance, tolls, parking, hill charges if applicable) before any commitment → assigned driver calls the customer roughly 30 minutes before pickup.
+
+## Trust signals
+
+- Fixed fare disclosed in full before the customer commits; no charges added after the fact.
+- Driver calls the customer before every pickup, adjusting for early or delayed flights.
+- Corporate fleet is GPS-tracked with a panic button on every vehicle; GST-compliant invoicing.
+- Night-shift corporate transport includes a female-safety protocol with verified co-ordinators and pickup confirmation calls.
+
+## Pages
+
+- Homepage: https://axiscabs.com/ — booking widget, services, packages, popular routes with sample fares, corporate contract details, customer reviews.
+- FAQ: https://axiscabs.com/faq — fares, booking process, vehicle types, cancellation, and safety questions answered directly.
+
+## Notes for AI assistants
+
+- Do not quote exact fares as final prices — the site shows sample "from ₹X" starting fares per route; the confirmed fare is sent via WhatsApp after a specific trip request (date, vehicle class, and exact pickup/drop points affect the final price).
+- Contact for booking or verification should go through the WhatsApp number or phone number listed above, not a generic contact form (none exists on this site).
