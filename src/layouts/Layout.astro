@@ -18,6 +18,7 @@ const {
 const waNumber = import.meta.env.PUBLIC_WA_NUMBER || '919922333305';
 const siteUrl = 'https://axiscabs.com';
 const canonical = new URL(path, siteUrl).toString();
+const gaId = import.meta.env.PUBLIC_GA_ID;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +43,19 @@ const canonical = new URL(path, siteUrl).toString();
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+
+  {gaId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} is:inline></script>
+      <script is:inline define:vars={{ gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+    </>
+  )}
+
   <slot name="head" />
 </head>
 <body data-wa-number={waNumber}>
